@@ -3,8 +3,8 @@ import { StartScreen, PlayScreen } from "./Screens";
 
 function App() {
   const [gameState, setGameState] = useState("start");
-  
 
+  
   switch (gameState) {
     case "start":
       return <StartScreen start={() => setGameState("play")} />;

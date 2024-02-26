@@ -1,4 +1,5 @@
 export function Tile({ content: Content, flip, state }) {
+  
   switch (state) {
     case "start":
       return (
@@ -22,7 +23,8 @@ export function Tile({ content: Content, flip, state }) {
       );
     case "matched":
       return (
-        <Matched className="inline-block h-12 w-12 text-gray-300">
+        <Matched 
+        className="inline-block h-12 w-12 text-gray-300">
           <Content
             style={{
               display: "inline-block",
@@ -41,8 +43,7 @@ export function Tile({ content: Content, flip, state }) {
 
 function Back({ className, flip }) {
   return (
-    <div onClick={flip} className={className}>
-      
+    <div onClick={flip} className={`${className} transform transition-transform ease-in-out duration-700 ${flip ? 'rotate-y-180' : ''}`}>      
     </div>
   );
 }
@@ -52,5 +53,6 @@ function Front({ className, children }) {
 }
 
 function Matched({ className, children }) {
-  return <div className={className}>{children}</div>;
+  return <div className={className}>{children}</div>; 
 }
+

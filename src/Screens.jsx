@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import * as icons from "react-icons/gi";
 import { Tile } from "./Tile";
@@ -20,23 +20,25 @@ export function StartScreen({ start }) {
   const [showPlayImage, setShowPlayImage] = useState(false);
 
   const handlePlayClick = () => {
-    setShowPlayImage(true);
+    setShowPlayImage(true); 
   };
 
   return (
-    <div className="py-8 px-8 max-w-sm mx-auto h-[26rem] w-full md:w-400px border space-y-2 m-8  rounded-xl bg-pink-50">
+    <div className="py-8 px-8 max-w-sm mx-auto h-[26rem] w-full md:w-400px border space-y-2 m-8 rounded-xl bg-pink-50 transition-colors 
+    duration-300 hover:bg-gray-900">
       <div className="space-y-1.5">
         <p className="text-2xl py-5 text-pink-500 text-center font-bold">
           Memory 
         </p>
         <div className="space-y-3.5">
           <p className="text-md py-4 text-pink-400 text-center font-normal">
-            Flip over tiles looking for pairs 
+            Flip over tiles looking for pairs
           </p>
         <div className="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-12 border rounded-full">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-12 border rounded-full hover:bg-pink-500 transition duration-300">
             Play
           </button>
+    
           </div>
           
         </div>
@@ -44,6 +46,7 @@ export function StartScreen({ start }) {
     </div>
   );
 }
+
 
 
 export function PlayScreen({ end }) {
@@ -130,7 +133,7 @@ export function PlayScreen({ end }) {
   return (
     <>
       <div className="flex items-center justify-center h-[26rem] w-full md:w-400px mx-auto px-8 space-y-2 py-8 m-10">
-        <div className="border border-gray-100 rounded-xl p-3">
+        <div className="border border-gray-100 rounded-xl p-3 transition-colors duration-300 ease-in-out hover:bg-black">
           <div className="grid grid-cols-4 gap-4">
         {getTiles(16).map((tile, i) => (
           <Tile key={i} flip={() => flip(i)} {...tile} />
@@ -144,33 +147,3 @@ export function PlayScreen({ end }) {
   );
 }
 
-export function DarkModeToggle() {
-  const [isDarkMode, ...setIsDarkMode] = useState(false);
-
-  // function to toggle dark mode 
-  const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  }
-
-
-return (
-  <div className="flex items-center justify-center mt-8">
-    <label htmlFor="darkModeToggle" className="flex items-center cursor-pointer">
-      <span className="relative"/>
-        <input 
-        type="checkbox" 
-        id="darkModeToggle"
-        className="hidden"
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
-        />
-        <span className="{`w-10 h-4 bg-gray-400 rounded-full shadow-inner transition duration-300 ease-in-out ${isDarkMode ? 'bg-indigo-600' : 'bg-gray-300'}`"/>
-          <span 
-          className="{`absolute left-0 inline-block w-6 h-6 bg-blue-300 rounded-full shadow-md transform transition duration-300 ease-in-out ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`"
-          />
-         <span className="ml-3 text-gray=700"{...isDarkMode ? 'Dark Mode': 'Light Mode'}></span> 
-    </label>
-  </div>
-);
-
-}
