@@ -1,5 +1,5 @@
 export function Tile({ content: Content, flip, state }) {
-  
+
   switch (state) {
     case "start":
       return (
