@@ -43,7 +43,7 @@ export function Tile({ content: Content, flip, state }) {
 
 function Back({ className, flip }) {
   return (
-    <div onClick={flip} className={`${className} transform transition-transform ease-in-out duration-700 ${flip ? 'rotate-y-180' : ''}`}>      
+    <div onClick={flip} className={ `${className} transform transition-transform ease-in-out duration-500 ${flip ? 'rotate-y-180' : ''} `}>      
     </div>
   );
 }

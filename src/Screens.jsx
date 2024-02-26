@@ -24,26 +24,24 @@ export function StartScreen({ start }) {
   };
 
   return (
-    <div className="py-8 px-8 max-w-sm mx-auto h-[26rem] w-full md:w-400px border space-y-2 m-8 rounded-xl bg-pink-50 transition-colors 
-    duration-300 hover:bg-gray-900">
-      <div className="space-y-1.5">
-        <p className="text-2xl py-5 text-pink-500 text-center font-bold">
-          Memory 
+   <div className="border space-y-2 m-8 rounded-xl max-w-sm mx-auto px-8 py-8 h-[26rem] w-full md:w-400px bg-pink-50 transition-colors
+   duration-300 hover:bg-gray-900">
+    <div className="space-y-1.5">
+      <p className="text-2xl py-5 text-pink-500 text-center font-bold">
+        Memory 
+      </p>
+      <div className="space-y-3.5">
+        <p className="text-md py-4 text-pink-400 text-center font-normal">
+          Flip over tiles looking for pairs 
         </p>
-        <div className="space-y-3.5">
-          <p className="text-md py-4 text-pink-400 text-center font-normal">
-            Flip over tiles looking for pairs
-          </p>
         <div className="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-12 border rounded-full hover:bg-pink-500 transition duration-300">
-            Play
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-12 border rounded-full hover:bg-pink-500">
+            Play 
           </button>
-    
-          </div>
-          
         </div>
       </div>
     </div>
+   </div>
   );
 }
 
@@ -138,8 +136,8 @@ export function PlayScreen({ end }) {
         {getTiles(16).map((tile, i) => (
           <Tile key={i} flip={() => flip(i)} {...tile} />
         ))}
-      </div>
-      <span className="text-indigo-400 flex center absolute top-12">Tries 
+      </div> 
+      <span className="text-indigo-400 flex center absolute top-12 ml-16">Tries 
       <p className="border rounded-md mx-2 h-6 w-8 text-center bg-indigo-200">{tryCount}</p></span>
       </div>
       </div>
