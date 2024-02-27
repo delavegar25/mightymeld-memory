@@ -48,7 +48,7 @@ function Back({ className, flip }) {
   );
 }
 
-function Front({ className, children }) {
+function Front({ className, children, filp }) {
   return <div className={className}>{children}</div>;
 }
 

@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import * as icons from "react-icons/gi";
 import { Tile } from "./Tile";
 
+
 export const possibleTileContents = [
   icons.GiHearts,
   icons.GiWaterDrop,
@@ -18,11 +19,13 @@ export const possibleTileContents = [
 
 export function StartScreen({ start }) {
   const [showPlayImage, setShowPlayImage] = useState(false);
+  
 
   const handlePlayClick = () => {
     setShowPlayImage(true); 
   };
 
+  
   return (
    <div className="border space-y-2 m-8 rounded-xl max-w-sm mx-auto px-8 py-8 h-[26rem] w-full md:w-400px bg-pink-50 transition-colors
    duration-300 hover:bg-gray-900">
@@ -50,6 +53,8 @@ export function StartScreen({ start }) {
 export function PlayScreen({ end }) {
   const [tiles, setTiles] = useState(null);
   const [tryCount, setTryCount] = useState(0);
+  const [time, setTime] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const getTiles = (tileCount) => {
     // Throw error if count is not even.
@@ -77,7 +82,7 @@ export function PlayScreen({ end }) {
 
   const flip = (i) => {
     // Is the tile already flipped? We don’t allow flipping it back.
-    if (tiles[i].state === "flipped") return;
+    if (tiles[i].state === "flipped || gameOver") return;
 
     // How many tiles are currently flipped?
     const flippedTiles = tiles.filter((tile) => tile.state === "flipped");
@@ -128,6 +133,14 @@ export function PlayScreen({ end }) {
     });
   };
 
+ useEffect(() => {
+  const timer = setInterval(()=> {
+    setTime((prevTime) => prevTime + 1);
+  }, 1000);
+
+  return () => clearInterval(timer);
+ }, []);
+
   return (
     <>
       <div className="flex items-center justify-center h-[26rem] w-full md:w-400px mx-auto px-8 space-y-2 py-8 m-10">
@@ -139,9 +152,20 @@ export function PlayScreen({ end }) {
       </div> 
       <span className="text-indigo-400 flex center absolute top-12 ml-16">Tries 
       <p className="border rounded-md mx-2 h-6 w-8 text-center bg-indigo-200">{tryCount}</p></span>
+      <span className="text-gray-900 flex center absolute bottom bottom-4 ml-16">
+        Time 
+        <p className="border rounded-md mx-2 h-6 w-16 text-center bg-indigo-200">{formatTime(time)}</p>
+      </span>
       </div>
       </div>
     </>
   );
+}
+
+// Function to format time in MM:SS Format
+function formatTime(seconds){
+  const minutes = Math.floor(seconds/60);
+  const remainingSeconds = seconds % 60;
+  return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
