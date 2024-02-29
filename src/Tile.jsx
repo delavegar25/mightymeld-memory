@@ -43,13 +43,16 @@ export function Tile({ content: Content, flip, state }) {
 
 function Back({ className, flip }) {
   return (
-    <div onClick={flip} className={ `${className} transform transition-transform ease-in-out duration-500 ${flip ? 'rotate-y-180' : ''} `}>      
+    <div onClick={flip} className={ `${className} transform transition-transform ease-in-out duration-500 ${flip ? 'rotate-y-180' : ''} `}>       
     </div>
   );
 }
 
 function Front({ className, children, filp }) {
-  return <div className={className}>{children}</div>;
+  return( 
+  <div className={className}>{children}
+  </div>
+  );
 }
 
 function Matched({ className, children }) {

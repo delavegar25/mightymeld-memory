@@ -20,7 +20,7 @@ export const possibleTileContents = [
 export function StartScreen({ start }) {
   const [showPlayImage, setShowPlayImage] = useState(false);
   
-
+ 
   const handlePlayClick = () => {
     setShowPlayImage(true); 
   };
@@ -38,8 +38,19 @@ export function StartScreen({ start }) {
           Flip over tiles looking for pairs 
         </p>
         <div className="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-12 border rounded-full hover:bg-pink-500">
-            Play 
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-2 border rounded-full hover:bg-pink-500">
+            Easy 
+          </button>
+        </div>
+        <div class="flex justify-center mx-auto">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white border rounded-full hover:bg-pink-500">
+            Medium
+          </button>
+        </div>
+
+        <div class="flex justify-center mx-auto">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 m-2 text-white border rounded-full hover:bg-pink-500">
+            Hard 
           </button>
         </div>
       </div>
@@ -54,7 +65,7 @@ export function PlayScreen({ end }) {
   const [tiles, setTiles] = useState(null);
   const [tryCount, setTryCount] = useState(0);
   const [time, setTime] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  
 
   const getTiles = (tileCount) => {
     // Throw error if count is not even.
@@ -82,7 +93,7 @@ export function PlayScreen({ end }) {
 
   const flip = (i) => {
     // Is the tile already flipped? We don’t allow flipping it back.
-    if (tiles[i].state === "flipped || gameOver") return;
+    if (tiles[i].state === "flipped") return;
 
     // How many tiles are currently flipped?
     const flippedTiles = tiles.filter((tile) => tile.state === "flipped");
