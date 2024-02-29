@@ -38,18 +38,18 @@ export function StartScreen({ start }) {
           Flip over tiles looking for pairs 
         </p>
         <div className="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-2 border rounded-full hover:bg-pink-500">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-2 border rounded-full shadow-pink-900 hover:bg-pink-500">
             Easy 
           </button>
         </div>
         <div class="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white border rounded-full hover:bg-pink-500">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white border rounded-full shadow-pink-900 hover:bg-pink-500">
             Medium
           </button>
         </div>
 
         <div class="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 m-2 text-white border rounded-full hover:bg-pink-500">
+          <button onClick={start} className="bg-pink-400 py-1 px-8 m-2 text-white border rounded-full shadow-pink-900 hover:bg-pink-500">
             Hard 
           </button>
         </div>
