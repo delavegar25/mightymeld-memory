@@ -19,9 +19,14 @@ export const possibleTileContents = [
 
 export function StartScreen({ start }) {
   const [showPlayImage, setShowPlayImage] = useState(false);
-  
+  const [loading,  setLoading] = useState(false);
+ 
  
   const handlePlayClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      start(difficulty);
+    }, 5000);
     setShowPlayImage(true); 
   };
 
@@ -39,20 +44,34 @@ export function StartScreen({ start }) {
         </p>
         <div className="flex justify-center mx-auto">
           <button onClick={start} className="bg-pink-400 py-1 px-8 text-white m-2 border rounded-full shadow-pink-900 bg-blue hover:bg-pink-500">
-            Easy 
+            Play
           </button>
         </div>
-        <div class="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white border rounded-full shadow-pink-900 bg-blue hover:bg-pink-500">
-            Medium
-          </button>
-        </div>
-
-        <div class="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 m-2 text-white border rounded-full shadow-pink-900 bg-blue hover:bg-pink-500">
-            Hard 
-          </button>
-        </div>
+        <h2 class="text-[#EC4899] text-xl text-center font-[500] hidden -1024:block">For the best experience, please play on a laptop screen</h2>
+        <div class="w-full h-[500px] absolute translate-x-[110%] flex flex-col gap-4 items-center justify-center bg-[#FDF3F8] rounded-xl -1024:scale-[0.8] px-3 ">
+        <h2 class="difficulty text-4xl font-[600] mb-8 text-[#E4458F] text-center" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Select Difficulty</h2>
+        <div class="bg-white  modal opacity-0 pointer-events-none rounded w-80 p-4 flex flex-col justify-between z-20 shadow-xl fixed left-[45%] top-[20%] translate-x-[-50%] translate-y-[0%] duration-200">
+        <div class="py-4">
+          <h2 class="font-bold text-xl">Easy mode</h2>
+          <p class="my-2">-Unlimited Lives</p>
+          <p class="my-2">-Timer at 2:00</p></div></div>
+          <div class="flex gap-4 justify-center items-center w-full difficulty" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+            <button class="rounded-lg w-[70%] bg-[#E4458F] text-white p-3 px-6 text-2xl font-[500] play-btn relative">Easy</button>
+            <div class="bg-white p-2 px-4 text-2xl rounded-lg font-[700] cursor-pointer">?</div></div>
+            <div class="bg-white modal opacity-0 pointer-events-none rounded w-80 p-4 flex flex-col justify-between z-20 shadow-xl fixed left-[45%] top-[20%] translate-x-[-50%] translate-y-[0%] duration-200">
+              <div class="py-4">
+                <h2 class="font-bold text-xl">Medium mode</h2>
+                <p class="my-2">-Limited Lives(10)</p>
+                <p class="my-2">-Timer at 1:45</p></div></div>
+                <div class="flex gap-4 justify-center items-center w-full difficulty" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                  <button class="rounded-lg w-[70%] bg-[#E4458F] text-white p-3 px-6 text-2xl font-[500] play-btn relative">Medium</button>
+                  <div class="bg-white p-2 px-4 text-2xl rounded-lg font-[700] cursor-pointer">?</div></div>
+                  <div class="bg-white  modal opacity-0 pointer-events-none rounded w-80 p-4 flex flex-col justify-between z-20 shadow-xl fixed left-[45%] top-[20%] translate-x-[-50%] translate-y-[0%] duration-200">
+                    <div class="py-4">
+                      <h2 class="font-bold text-xl">Hard mode</h2><p class="my-2">-Limited Lives(6)</p><p class="my-2">-Timer at 1:15</p></div></div>
+                      <div class="flex gap-4 justify-center items-center w-full difficulty" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                        <button class="rounded-lg w-[70%] bg-[#E4458F] text-white p-3 px-6 text-2xl font-[500] play-btn relative">Hard</button>
+                        <div class="bg-white p-2 px-4 text-2xl rounded-lg font-[700] cursor-pointer">?</div></div></div>
       </div>
     </div>
    </div>
@@ -163,8 +182,7 @@ export function PlayScreen({ end }) {
       </div> 
       <span className="text-indigo-400 flex center absolute top-12 ml-16">Tries 
       <p className="border rounded-md mx-2 h-6 w-8 text-center bg-indigo-200">{tryCount}</p></span>
-      <span className="text-gray-900 flex center absolute bottom bottom-4 ml-16">
-        Time 
+      <span className="text-gray-900 flex center absolute bottom bottom-4 ml-16"> 
         <p className="border rounded-md mx-2 h-6 w-16 text-center bg-indigo-200">{formatTime(time)}</p>
       </span>
       </div>

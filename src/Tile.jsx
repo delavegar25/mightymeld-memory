@@ -1,3 +1,6 @@
+import './style.css';
+import React from 'react'
+
 export function Tile({ content: Content, flip, state }) {
 
   switch (state) {
