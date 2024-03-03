@@ -72,7 +72,7 @@ export function PlayScreen({ end }) {
   const [tiles, setTiles] = useState(null);
   const [tryCount, setTryCount] = useState(0);
   const [time, setTime] = useState(0);
-  
+  const [gameWon, setGameWon] = useState(false);
 
 
   const getTiles = (tileCount) => {
@@ -134,9 +134,14 @@ export function PlayScreen({ end }) {
             state: tile.state === "flipped" ? newState : tile.state,
           }));
 
-          // If all tiles are matched, the game is over.
+          // If all tiles are matched, the game is won.
           if (newTiles.every((tile) => tile.state === "matched")) {
-            setTimeout(end, 0);
+            setGameWon(true);
+            confetti({
+              particleCount: 200,
+              speed: 200,
+            });
+            setTimeout(end, 3000);
           }
 
           return newTiles;
@@ -174,6 +179,15 @@ export function PlayScreen({ end }) {
       <span className="text-gray-900 flex center absolute bottom bottom-4 ml-16"> 
         <p className="border rounded-md mx-2 h-6 w-16 text-center bg-indigo-200">{formatTime(time)}</p>
       </span>
+      {gameWon && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <p className="text-green-500 text-lg font-semibold">
+              Congratulations, you won!
+            </p>
+          </div>
+        </div>
+      )}
       </div>
       </div>
     </>
