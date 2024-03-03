@@ -60,7 +60,6 @@ export function StartScreen({ start }) {
           </button>
       </div>
       
-      
       </div>
     </div>
    </div>
