@@ -22,12 +22,13 @@ export function StartScreen({ start }) {
   const [loading,  setLoading] = useState(false);
  
  
-  const handlePlayClick = () => {
+  const handlePlayClick = (difficulty) => {
     setLoading(true);
     setTimeout(() => {
       start(difficulty);
     }, 5000);
     setShowPlayImage(true); 
+    start(difficulty);
   };
 
   
@@ -49,7 +50,7 @@ export function StartScreen({ start }) {
       </div>
 
        <div className="flex justify-center mx-auto">
-          <button onClick={start} className="bg-pink-400 py-1 px-8 text-white border rounded-full shadow-pink-900 bg-blue hover:bg-pink-500">
+          <button onClick={() => handlePlayClick("medium")} className="bg-pink-400 py-1 px-8 text-white border rounded-full shadow-pink-900 bg-blue hover:bg-pink-500">
           Medium
           </button>
       </div>
@@ -69,11 +70,18 @@ export function StartScreen({ start }) {
 
 
 
-export function PlayScreen({ end }) {
+export function PlayScreen({ end, difficulty }) {
   const [tiles, setTiles] = useState(null);
   const [tryCount, setTryCount] = useState(0);
   const [time, setTime] = useState(0);
   
+  useEffect(() => {
+    let tileCount;
+    if(difficulty === "medium"){
+     tileCount = 20;
+    }
+    setTiles(getTiles(tileCount));
+  }, [difficulty]);
 
   const getTiles = (tileCount) => {
     // Throw error if count is not even.
